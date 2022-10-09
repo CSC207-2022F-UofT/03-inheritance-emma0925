@@ -34,6 +34,7 @@ public abstract class Bag {
     public Bag(String col, int cap){
         this.color=col;
         this.capacity=cap;
+        this.contents = new String[capacity];
     }
 
 
@@ -84,8 +85,13 @@ public abstract class Bag {
      *       and false otherwise.
      */
     public boolean addItem(String newItem) {
-        if(this.numberOfContents < this.capacity)   {
-            this.contents[this.numberOfContents] = newItem;
+        if (numberOfContents < capacity) {
+            String[] new_contents = new String[numberOfContents + 1];
+            for (int i = 0; i < numberOfContents; i++) {
+                new_contents[i] = contents[i];
+            }
+            new_contents[numberOfContents] = newItem;
+            this.contents = new_contents;
             this.numberOfContents += 1;
             return true;
         } else {
